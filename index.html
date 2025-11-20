@@ -4,77 +4,359 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tegshee Iderbaatar - Software Engineer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
+    * {
       margin: 0;
       padding: 0;
-      color: #222;
+      box-sizing: border-box;
     }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 40px 20px;
+      color: #1a1a2e;
+    }
+
     .container {
-      max-width: 850px;
-      margin: 40px auto;
-      background: #fff;
-      padding: 40px;
-      border-radius: 12px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      max-width: 900px;
+      margin: 0 auto;
     }
-    h1 {
-      margin-bottom: 4px;
+
+    /* Header Card */
+    .header-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      padding: 48px;
+      margin-bottom: 24px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+    }
+
+    .profile-section {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .avatar {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-size: 32px;
+      color: white;
+      font-weight: 600;
     }
+
+    .name-section h1 {
+      font-size: 36px;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin-bottom: 8px;
+    }
+
     .role {
-      color: #555;
       font-size: 18px;
-      margin-bottom: 20px;
+      color: #667eea;
+      font-weight: 500;
     }
-    h2 {
-      margin-top: 40px;
-      color: #333;
-      border-left: 4px solid #007acc;
-      padding-left: 10px;
-      font-size: 22px;
+
+    .role span {
+      color: #999;
+      margin: 0 8px;
     }
-    ul {
-      margin-top: 10px;
-    }
-    .section p, .section li {
+
+    .about-text {
       font-size: 16px;
-      line-height: 1.6;
+      line-height: 1.8;
+      color: #4a4a6a;
     }
-    .skills span {
-      display: inline-block;
-      background: #eaf4ff;
-      color: #007acc;
-      padding: 6px 12px;
-      border-radius: 8px;
-      margin: 5px 6px 5px 0;
+
+    /* Content Cards */
+    .card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 32px;
+      margin-bottom: 20px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    }
+
+    .card h2 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #1a1a2e;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .card h2::before {
+      content: '';
+      width: 4px;
+      height: 24px;
+      background: linear-gradient(180deg, #667eea, #764ba2);
+      border-radius: 2px;
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skill-tag {
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+      color: #4a4a6a;
+      padding: 10px 18px;
+      border-radius: 12px;
       font-size: 14px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
     }
-    .contact a {
-      color: #007acc;
+
+    .skill-tag:hover {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    }
+
+    /* Experience */
+    .experience-item {
+      position: relative;
+      padding-left: 24px;
+      margin-bottom: 28px;
+      border-left: 2px solid #e4e8eb;
+    }
+
+    .experience-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .experience-item::before {
+      content: '';
+      position: absolute;
+      left: -7px;
+      top: 6px;
+      width: 12px;
+      height: 12px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border-radius: 50%;
+    }
+
+    .experience-item h3 {
+      font-size: 17px;
+      font-weight: 600;
+      color: #1a1a2e;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .date-badge {
+      font-size: 12px;
+      font-weight: 500;
+      color: #667eea;
+      background: rgba(102, 126, 234, 0.1);
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .experience-item ul {
+      list-style: none;
+    }
+
+    .experience-item li {
+      font-size: 14px;
+      line-height: 1.7;
+      color: #4a4a6a;
+      margin-bottom: 8px;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .experience-item li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: #667eea;
+      font-weight: 600;
+    }
+
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .project-item {
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+      padding: 20px;
+      border-radius: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .project-item:hover {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
+    }
+
+    .project-item:hover h4,
+    .project-item:hover p {
+      color: white;
+    }
+
+    .project-item h4 {
+      font-size: 15px;
+      font-weight: 600;
+      color: #1a1a2e;
+      margin-bottom: 6px;
+      transition: color 0.3s ease;
+    }
+
+    .project-item p {
+      font-size: 13px;
+      color: #6a6a8a;
+      line-height: 1.5;
+      transition: color 0.3s ease;
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .contact-item {
+      text-align: center;
+      padding: 20px;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+      border-radius: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .contact-item:hover {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      transform: translateY(-2px);
+    }
+
+    .contact-item:hover .contact-label,
+    .contact-item:hover .contact-value {
+      color: white;
+    }
+
+    .contact-icon {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .contact-label {
+      font-size: 12px;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+      transition: color 0.3s ease;
+    }
+
+    .contact-value {
+      font-size: 14px;
+      color: #4a4a6a;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .contact-value a {
+      color: inherit;
       text-decoration: none;
     }
+
+    /* Footer */
     footer {
       text-align: center;
-      color: #888;
-      margin-top: 40px;
+      padding: 24px;
+      color: rgba(255, 255, 255, 0.8);
       font-size: 14px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      body {
+        padding: 20px 16px;
+      }
+
+      .header-card {
+        padding: 32px 24px;
+      }
+
+      .profile-section {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .name-section h1 {
+        font-size: 28px;
+      }
+
+      .projects-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        padding: 24px;
+      }
     }
   </style>
 </head>
 
 <body>
   <div class="container">
-
-    <h1>Tegshee Iderbaatar</h1>
-    <div class="role">Software Engineer • Next.js • Flutter • Angular</div>
-
-    <!-- Summary -->
-    <div class="section">
-      <h2>About Me</h2>
-      <p>
+    
+    <!-- Header -->
+    <div class="header-card">
+      <div class="profile-section">
+        <div class="avatar">TI</div>
+        <div class="name-section">
+          <h1>Tegshee Iderbaatar</h1>
+          <div class="role">Software Engineer <span>•</span> Next.js <span>•</span> Flutter <span>•</span> Angular</div>
+        </div>
+      </div>
+      <p class="about-text">
         I am a software engineer from Mongolia with 8 years of experience in web and mobile development.
         I have strong skills in building modern web applications using Next.js, Angular, and Node.js, as well as
         developing mobile applications with Flutter. I enjoy creating clean UI/UX, efficient systems, and meaningful digital products.
@@ -82,71 +364,110 @@
     </div>
 
     <!-- Skills -->
-    <div class="section">
-      <h2>Skills</h2>
-      <div class="skills">
-        <span>Next.js</span>
-        <span>Angular</span>
-        <span>Flutter</span>
-        <span>TypeScript</span>
-        <span>JavaScript</span>
-        <span>C++</span>
-        <span>Swift</span>
-        <span>Objective-C</span>
-        <span>Node.js</span>
-        <span>Tailwind CSS</span>
-        <span>React</span>
-        <span>MongoDB</span>
-        <span>REST API</span>
+    <div class="card">
+      <h2>Skills & Technologies</h2>
+      <div class="skills-grid">
+        <span class="skill-tag">Next.js</span>
+        <span class="skill-tag">Angular</span>
+        <span class="skill-tag">Flutter</span>
+        <span class="skill-tag">TypeScript</span>
+        <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">C++</span>
+        <span class="skill-tag">Swift</span>
+        <span class="skill-tag">Objective-C</span>
+        <span class="skill-tag">Node.js</span>
+        <span class="skill-tag">Tailwind CSS</span>
+        <span class="skill-tag">React</span>
+        <span class="skill-tag">MongoDB</span>
+        <span class="skill-tag">REST API</span>
       </div>
     </div>
 
     <!-- Experience -->
-    <div class="section">
+    <div class="card">
       <h2>Experience</h2>
+      
+      <div class="experience-item">
+        <h3>Adsmart.mn – Full Stack Developer <span class="date-badge">2024 – Present</span></h3>
+        <ul>
+          <li>Developed full admin dashboard systems using Next.js, TypeScript, and Tailwind CSS</li>
+          <li>Implemented Mapbox integrations, animation-heavy UI/UX with Framer Motion</li>
+          <li>Created and optimized campaign slot video/image upload systems</li>
+          <li>Worked on face detection & swapping frontend for 1920x1080 large LED screens</li>
+        </ul>
+      </div>
 
-      <p><strong>Adsmart.mn – Full Stack Developer</strong></p>
-      <ul>
-        <li>Developed full admin dashboard systems using Next.js, TypeScript, and Tailwind CSS</li>
-        <li>Implemented Mapbox integrations, animation-heavy UI/UX with Framer Motion</li>
-        <li>Created and optimized campaign slot video/image upload systems</li>
-        <li>Worked on face detection & swapping frontend for 1920x1080 large LED screens</li>
-      </ul>
+      <div class="experience-item">
+        <h3>Databank – Software Developer <span class="date-badge">2022 – 2024</span></h3>
+        <ul>
+          <li>Built and maintained landing pages, dashboards, and automation tools</li>
+          <li>Developed e-commerce management dashboards (Node.js + MongoDB)</li>
+          <li>Created traffic map screens and smart city UI on vertical LED displays</li>
+        </ul>
+      </div>
 
-      <p><strong>Finance Mobile Apps – Flutter Developer</strong></p>
-      <ul>
-        <li>Built multiple financial accounting apps using Flutter and Firebase</li>
-        <li>Designed clean UI flows and optimized performance</li>
-        <li>Integrated charts, authentication, and offline data handling</li>
-      </ul>
+      <div class="experience-item">
+        <h3>Trade Development Bank – Developer <span class="date-badge">2018 – 2021</span></h3>
+        <ul>
+          <li>Built multiple financial accounting apps using Flutter and Firebase</li>
+          <li>Designed clean UI flows and optimized performance</li>
+          <li>Integrated charts, authentication, and offline data handling</li>
+        </ul>
+      </div>
 
-      <p><strong>Other Projects</strong></p>
-      <ul>
-        <li>Built and maintained landing pages, dashboards, and automation tools</li>
-        <li>Developed e-commerce management dashboards (Node.js + MongoDB)</li>
-        <li>Created traffic map screens and smart city UI on vertical LED displays</li>
-      </ul>
+      <div class="experience-item">
+        <h3>Egulen – Junior Developer <span class="date-badge">2016 – 2017</span></h3>
+        <ul>
+          <li>Started professional career in software development</li>
+          <li>Gained foundational experience in web technologies</li>
+          <li>Collaborated with team on various client projects</li>
+        </ul>
+      </div>
     </div>
 
     <!-- Projects -->
-    <div class="section">
+    <div class="card">
       <h2>Highlighted Projects</h2>
-      <ul>
-        <li><strong>Adsmart Admin Dashboard</strong> – Next.js App Router, Tailwind, API integrations</li>
-        <li><strong>Smella Admin</strong> – Perfume e-commerce admin system</li>
-        <li><strong>Mapbox Traffic Maps</strong> – City traffic visualization for LED screens</li>
-        <li><strong>Face Swap LED System</strong> – Real-time face detection & swapping frontend</li>
-      </ul>
+      <div class="projects-grid">
+        <div class="project-item">
+          <h4>Adsmart Admin Dashboard</h4>
+          <p>Next.js App Router, Tailwind, API integrations</p>
+        </div>
+        <div class="project-item">
+          <h4>Mapbox Traffic Maps</h4>
+          <p>City traffic visualization for LED screens</p>
+        </div>
+        <div class="project-item">
+          <h4>Face Swap LED System</h4>
+          <p>Real-time face detection & swapping frontend</p>
+        </div>
+      </div>
     </div>
 
     <!-- Contact -->
-    <div class="section">
+    <div class="card">
       <h2>Contact</h2>
-      <p class="contact">
-        Email: <a href="mailto:your@email.com">your@email.com</a><br>
-        GitHub: <a href="https://github.com/yourusername">https://github.com/yourusername</a><br>
-        Location: Ulaanbaatar, Mongolia
-      </p>
+      <div class="contact-grid">
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div class="contact-label">Email</div>
+          <div class="contact-value">
+            <a href="mailto:your@email.com">your@email.com</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">💻</div>
+          <div class="contact-label">GitHub</div>
+          <div class="contact-value">
+            <a href="https://github.com/yourusername">yourusername</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div class="contact-label">Location</div>
+          <div class="contact-value">Ulaanbaatar, Mongolia</div>
+        </div>
+      </div>
     </div>
 
     <footer>
